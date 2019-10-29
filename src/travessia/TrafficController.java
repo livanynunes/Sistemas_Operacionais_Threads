@@ -8,9 +8,10 @@ public class TrafficController {
 	//monitor invariant: nred>= 0 and nblue>= 0 and not
 	// (nred>0 and nblue>0)
 	
+	// Carros vermelhos passarem de uma vez é coincidência 
     public synchronized void entradaCarroVermelho() throws InterruptedException{
     		while(nblue > 0) {
-    			wait();
+    			wait(); // trava
     		}
     		++nred;
     }
@@ -18,13 +19,13 @@ public class TrafficController {
     public synchronized void saidaCarroVermelho() {
     	--nred;
     	if(nred ==0) {
-    		notifyAll();
+    		notifyAll(); //destrava
     	}
     }
     
     public synchronized void entradaCarroAzul() throws InterruptedException {
     	while(nred>0) {
-    		wait();
+    		wait(); // trava
     	}
     	++nblue;
     }
@@ -32,7 +33,7 @@ public class TrafficController {
     public synchronized void saidaCarroAzul() {
     	--nblue;
     	if(nblue ==0) {
-    		notifyAll();
+    		notifyAll(); // destrava
     	}
     }
 
