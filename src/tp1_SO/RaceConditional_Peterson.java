@@ -1,53 +1,51 @@
 package tp1_SO;
 
-//Critical Section Peterson's Solution Solution
+//	Solução de Peterson para seção critica
 public class RaceConditional_Peterson{
+	
  int turn;
  boolean flag[] = new boolean[2];
  int i=0,j=1;
- //CSC variables
- int counter=0;// counter for giving processes a upper bound 
- int cscVar=13;
- private class iTh extends Thread{ // process thread for i
+ 
+ int counter=0;						// contador para dar ao processo um limite superior
+ 
+ private class iTh extends Thread{	// thread i 
      public void run(){
              try{
                  do{
                      flag[i]= true;
                      turn=j;
-                     while(flag[j]&&turn==j);// wait for j to finish
-                     //critical section
-                     System.out.println("I is in critical section");
-                     cscVar++;
-                     System.out.println(cscVar);
+                     while(flag[j]&&turn==j);	// Aguardando por j terminar
+   
+                     // Seção critica
+                     System.out.println("I esta na critical section");
                      counter++;
-                     System.out.println("counter is "+counter+"\n___________");
-                     //
+                     System.out.println("contador: "+counter+"\n___________");
+                    
                      flag[i]= false;
-                     //remainder section
-                 }while(counter<100); // 100 is upper bound, to remove infinite looping
+                     // Seção restante
+                 }while(counter<1000000); 		//100 é o limite superior, para remover o loop infinito 
              }
              catch(Exception ex){
                  ex.printStackTrace();
              }
          }
      }
- private class jTh extends Thread{ // process thread for j
+ private class jTh extends Thread{ // thread j
          public void run(){
              try{
                  do{
                      flag[j]= true;
                      turn=i;
-                     while(flag[i]&&turn==i);// wait for i to finish
-                     //critical section
-                     System.out.println("J is in critical section");
-                     cscVar--;
-                     System.out.println(cscVar);
+                     while(flag[i]&&turn==i);	//Aguardando processo i terminar
+                     //seção critica
+                     System.out.println("J esta na critical section");
+
                      counter++;
-                     System.out.println("counter is "+counter+"\n___________");
-                     //
+                     System.out.println("contador: "+counter+"\n___________");
                      flag[j]= false;
-                     //remainder section
-                 }while(counter<100); // 100 is upper bound, to remove infinite looping
+                     //seção restante
+                 }while(counter<1000000); 	//100 é o limite superior, para remover o loop infinito
              }
              catch(Exception ex){
                  ex.printStackTrace();
@@ -55,11 +53,11 @@ public class RaceConditional_Peterson{
          }
      }
  public RaceConditional_Peterson(){
-     System.out.println("Starting Threads/Processes");
+     System.out.println("Iniciando Threads/Processos");
      Thread I= new iTh();
      Thread J = new jTh();
-     I.start(); //start process i
-     J.start(); //start process j
+     I.start(); //inicia processo i
+     J.start(); //inicia processo j
  }
     
 }

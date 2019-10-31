@@ -2,15 +2,13 @@ package travessia;
 
 public class TrafficController {
 
-	private int nred = 0; // number of red cars on bridge
-	private int nblue = 0; // number of blue cars on bridge
+	private int nred = 0; // numero de carros vermelhos na ponte
+	private int nblue = 0; // numero de carros azuis na ponte
+	
+	// variaveis para controlar starvation
 	private int esperaAzul = 0; //conta o numero de carros azuis que estão na espera
 	private int esperaVermelho = 0; // numero de carros vermelhos esperando 
 	private boolean vezAzul = true;
-	
-	//monitor invariant: nred>= 0 and nblue>= 0 and not
-	// (nred>0 and nblue>0)
-	
 	 
     public synchronized void entradaCarroVermelho() throws InterruptedException{
     	++esperaVermelho;

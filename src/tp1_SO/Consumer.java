@@ -1,7 +1,7 @@
 package tp1_SO;
 
-public class Consumer implements Runnable{
-	Q q; 
+public class Consumer implements Runnable{ 
+	Q q; 				// instancia objeto pilha = nosso buffer
     Consumer(Q q){ 
         this.q = q; 
         new Thread(this, "Consumidor").start();
@@ -10,6 +10,6 @@ public class Consumer implements Runnable{
     public void run() 
     { 
         for(int i=0; i < 5; i++)  
-            q.get();	// consumer get items
+            q.get();	// consumidor pega item no buffer 
     } 
 }
