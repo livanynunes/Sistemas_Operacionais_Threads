@@ -1,2 +1,2 @@
-# Sistemas_Operacionais_Threads
-  Neste trabalho é explorado o conceito e a utilização de threads, bem como problemas de sincronismo e mecanismos para resolvê-los.
+# How it works
+ In this project, the concept and the use of threads are explored, as well as synchronism problems and mechanisms to solve them. 
